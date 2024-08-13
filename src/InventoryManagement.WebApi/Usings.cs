@@ -1,0 +1,1 @@
+﻿global using InventoryManagement.Shared.Abstractions.Models;

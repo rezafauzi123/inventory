@@ -1,0 +1,11 @@
+{
+  "invalid-username-password": "Invalid username or password",
+  "invalid-password": "Invalid password",
+  "invalid-parameter": "Invalid parameter",
+  "invalid-request": "Invalid request",
+  "data-not-found": "Data not found",
+  "username-exists": "Username already exists",
+  "user-inactive": "User already inactive",
+  "role-name-exists": "Role name {0} already exists",
+  "to-large-text-size": "Text size must be lower than 1MB"
+}

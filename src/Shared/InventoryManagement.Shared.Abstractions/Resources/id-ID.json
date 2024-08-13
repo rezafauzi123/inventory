@@ -1,0 +1,11 @@
+{
+    "invalid-username-password": "Username atau Password tidak valid",
+    "invalid-password": "Password tidak valid",
+    "invalid-parameter": "Parameter tidak valid",
+    "invalid-request": "Permintaan tidak valid",
+    "data-not-found": "Data tidak ditemukan",
+    "username-exists": "Username sudah ada",
+    "user-inactive": "Pengguna sudah tidak aktif",
+    "role-name-exists": "Nama role {0} sudah ada",
+    "to-large-text-size": "Ukuran text harus kurang dari 1MB"
+}

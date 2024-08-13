@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\InventoryManagement.Core\InventoryManagement.Core.csproj" />
+        <ProjectReference Include="..\InventoryManagement.Persistence.Postgres\InventoryManagement.Persistence.Postgres.csproj" />
+        <ProjectReference Include="..\InventoryManagement.Persistence.SqlServer\InventoryManagement.Persistence.SqlServer.csproj" />
+        <ProjectReference Include="..\Shared\InventoryManagement.Shared.Infrastructure\InventoryManagement.Shared.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+    </ItemGroup>
+</Project>
