@@ -118,6 +118,7 @@ public static class ApiContractToDomainMapper
             AuthorId = request.AuthorId!.Value,
             CategoryId = request.CategoryId!.Value,
             PublisherId = request.PublisherId!.Value,
+            Code = request.Code!,
             Title = request.Title!,
             Year = request.Year!.Value,
             Pages = request.Pages!.Value,

@@ -15,18 +15,21 @@ public class AddInventory : BaseEndpointWithoutResponse<AddInventoryRequest>
 {
     private readonly IDbContext _dbContext;
     private readonly IInventoryService _inventoryService;
+    private readonly IBookService _bookService;
     private readonly IRng _rng;
     private readonly ISalter _salter;
     private readonly IStringLocalizer<AddInventory> _localizer;
 
     public AddInventory(IDbContext dbContext,
         IInventoryService InventoryService,
+        IBookService bookService,
         IRng rng,
         ISalter salter,
         IStringLocalizer<AddInventory> localizer)
     {
         _dbContext = dbContext;
         _inventoryService = InventoryService;
+        _bookService = bookService;
         _rng = rng;
         _salter = salter;
         _localizer = localizer;
@@ -56,6 +59,10 @@ public class AddInventory : BaseEndpointWithoutResponse<AddInventoryRequest>
             if (request.Qty < 0)
                 return BadRequest(Error.Create(_localizer["invalid-parameter"]));
 
+            var existingBook = await _bookService.GetByIdAsync(request.BookId, cancellationToken);
+            if (existingBook is null)
+                throw new Exception("Data not found");
+
             var existingInventory = await _inventoryService.GetByBookIdAsync(request.BookId, cancellationToken);
             if (existingInventory != null)
             {
@@ -63,6 +70,8 @@ public class AddInventory : BaseEndpointWithoutResponse<AddInventoryRequest>
 
                 existingInventory.BookId = request.BookId;
                 existingInventory.Stock += request.Qty;
+                existingInventory.BookCode = existingBook.Code;
+                existingInventory.BookTitle = existingBook.Title;
 
                 var transactionHistory = new Domain.Entities.TransactionHistory
                 {
@@ -80,6 +89,8 @@ public class AddInventory : BaseEndpointWithoutResponse<AddInventoryRequest>
                 {
                     BookId = request.BookId,
                     Stock = request.Qty,
+                    BookCode = existingBook.Code,
+                    BookTitle = existingBook.Title,
                 };
 
                 await _dbContext.InsertAsync(newInventory, cancellationToken);

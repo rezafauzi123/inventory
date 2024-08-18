@@ -22,4 +22,5 @@ public interface IBookService : IEntityService<Book>
     /// <param name="cancellationToken">See <see cref="CancellationToken"/></param>
     /// <returns>bool</returns>
     Task<bool> IsBookExistAsync(string title, CancellationToken cancellationToken = default);
+    Task<Book?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 }

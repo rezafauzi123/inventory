@@ -44,24 +44,21 @@ public class GetAllInventory : BaseEndpoint<GetAllInventoryRequest, List<Invento
             {
                 Id = e.Id,
                 Stock = e.Stock,
-                Book = e.Book != null ? new BookResponse
-                {
-                    Id = e.Book.Id,
-                    AuthorId = e.Book.AuthorId,
-                    PublisherId = e.Book.PublisherId,
-                    CategoryId = e.Book.CategoryId,
-                    Title = e.Book.Title,
-                    Year = e.Book.Year,
-                    Pages = e.Book.Pages,
-                    Description = e.Book.Description,
-                    PublishedDate = e.Book.PublishedDate,
-                    Isbn = e.Book.Isbn,
-                    Dimensions = e.Book.Dimensions,
-                    Weight = e.Book.Weight,
-                    Price = e.Book.Price,
-                    Cover = e.Book.Cover,
-                    Language = e.Book.Language,
-                } : null
+                BookCode = e.BookCode,
+                BookTitle = e.BookTitle,
+                Author = e.Book!.Author!.Name,
+                Publisher = e.Book.Publisher!.Name,
+                Category = e.Book.Category!.Name,                
+                Year = e.Book.Year,
+                Pages = e.Book.Pages,
+                Description = e.Book.Description,
+                PublishedDate = e.Book.PublishedDate,
+                Isbn = e.Book.Isbn,
+                Dimensions = e.Book.Dimensions,
+                Weight = e.Book.Weight,
+                Price = e.Book.Price,
+                Cover = e.Book.Cover,
+                Language = e.Book.Language,
             })
             .ToListAsync(cancellationToken);
 

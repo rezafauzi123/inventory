@@ -6,6 +6,7 @@ public record BookResponse
     public Guid? AuthorId { get; set; }
     public Guid? CategoryId { get; set; }
     public Guid? PublisherId { get; set; }
+    public string? Code { get; set; }
     public string? Title { get; set; }
     public int? Year { get; set; }
     public int? Pages { get; set; }

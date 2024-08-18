@@ -10,7 +10,11 @@ public class BookConfiguration : BaseEntityConfiguration<Book>
     protected override void EntityConfiguration(EntityTypeBuilder<Book> builder)
     {        
         builder.HasKey(b => b.Id);
-     
+
+        builder.Property(b => b.Code)
+            .IsRequired()
+            .HasMaxLength(100);
+
         builder.Property(b => b.Title)
             .IsRequired()
             .HasMaxLength(255);

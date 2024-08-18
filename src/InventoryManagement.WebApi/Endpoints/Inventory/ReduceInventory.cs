@@ -16,18 +16,21 @@ public class ReduceInventory : BaseEndpointWithoutResponse<ReduceInventoryReques
 {
     private readonly IDbContext _dbContext;
     private readonly IInventoryService _inventoryService;
+    private readonly IBookService _bookService;
     private readonly IRng _rng;
     private readonly ISalter _salter;
     private readonly IStringLocalizer<ReduceInventory> _localizer;
 
     public ReduceInventory(IDbContext dbContext,
         IInventoryService InventoryService,
+        IBookService bookService,
         IRng rng,
         ISalter salter,
         IStringLocalizer<ReduceInventory> localizer)
     {
         _dbContext = dbContext;
         _inventoryService = InventoryService;
+        _bookService = bookService;
         _rng = rng;
         _salter = salter;
         _localizer = localizer;
@@ -57,12 +60,16 @@ public class ReduceInventory : BaseEndpointWithoutResponse<ReduceInventoryReques
             if (request.Qty < 0)
                 return BadRequest(Error.Create(_localizer["invalid-parameter"]));
 
+            var existingBook = await _bookService.GetByIdAsync(request.BookId, cancellationToken);
+            if (existingBook is null)
+                throw new Exception("Data not found");
+
             var existingInventory = await _inventoryService.GetByBookIdAsync(request.BookId, cancellationToken);
             if (existingInventory == null)
                 return BadRequest(Error.Create(_localizer["data-not-found"]));
 
             if (existingInventory.Stock < 0)
-                return BadRequest(Error.Create(_localizer["invalid-parameter"]));
+                return BadRequest("stock must more than 1");
 
             _dbContext.AttachEntity(existingInventory);
 

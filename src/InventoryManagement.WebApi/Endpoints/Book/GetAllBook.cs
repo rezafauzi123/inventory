@@ -41,6 +41,7 @@ public class GetAllBook : BaseEndpoint<GetAllBookRequest, List<BookResponse>>
                 AuthorId = e.AuthorId,
                 PublisherId = e.PublisherId,
                 CategoryId = e.CategoryId,
+                Code = e.Code,
                 Title = e.Title,
                 Year = e.Year,
                 Pages = e.Pages,

@@ -59,6 +59,7 @@ public class EditBook : BaseEndpointWithoutResponse<EditBookRequest>
                 AuthorId = e.AuthorId,
                 PublisherId = e.PublisherId,
                 CategoryId = e.CategoryId,
+                Code = e.Code,
                 Title = e.Title,
                 Year = e.Year,
                 Pages= e.Pages,
@@ -79,6 +80,9 @@ public class EditBook : BaseEndpointWithoutResponse<EditBookRequest>
 
         if (request.Payload.Title != book.Title)
             book.Title = request.Payload.Title!;
+
+        if (request.Payload.Title != book.Code)
+            book.Code = request.Payload.Code!;
 
         var isfileExist = await _fileService.IsFileExistAsync(book.Cover!, cancellationToken);
         if (isfileExist)

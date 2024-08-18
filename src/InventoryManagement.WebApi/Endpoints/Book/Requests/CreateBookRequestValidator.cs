@@ -10,6 +10,7 @@ public class CreateBookRequestValidator : AbstractValidator<CreateBookRequest>
         RuleFor(e => e.CategoryId).NotNull();
         RuleFor(e => e.AuthorId).NotNull();
         RuleFor(e => e.PublisherId).NotNull();
+        RuleFor(e => e.Code).NotNull().NotEmpty().MaximumLength(100).SetValidator(new AsciiOnlyValidator());
         RuleFor(e => e.Title).NotNull().NotEmpty().MaximumLength(100).SetValidator(new AsciiOnlyValidator());
         RuleFor(e => e.Year).NotNull();
         RuleFor(e => e.Pages).NotNull();

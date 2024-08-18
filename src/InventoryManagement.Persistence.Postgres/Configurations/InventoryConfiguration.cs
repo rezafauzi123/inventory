@@ -11,7 +11,15 @@ public class InventoryConfiguration : BaseEntityConfiguration<Inventory>
     protected override void EntityConfiguration(EntityTypeBuilder<Inventory> builder)
     {        
         builder.HasKey(i => i.Id);
-        
+
+        builder.Property(i => i.BookCode)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        builder.Property(i => i.BookTitle)
+            .IsRequired()
+            .HasMaxLength(255);
+
         builder.Property(i => i.Stock)
             .IsRequired()
             .HasDefaultValue(0);

@@ -13,6 +13,7 @@ public sealed class Book : BaseEntity, IEntity
     public Guid AuthorId { get; set; }
     public Guid CategoryId { get; set; }
     public Guid PublisherId { get; set; }
+    public string Code { get; set; }
     public string Title { get; set; } = null!;
     public int Year { get; set; }
     public int Pages { get; set; }
