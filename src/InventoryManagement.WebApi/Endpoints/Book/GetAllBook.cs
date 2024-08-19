@@ -53,21 +53,9 @@ public class GetAllBook : BaseEndpoint<GetAllBookRequest, List<BookResponse>>
                 Price = e.Price,
                 Cover = e.Cover,
                 Language = e.Language,
-                Author = new AuthorResponse
-                {
-                    Id = e.Author!.Id,
-                    Name = e.Author!.Name,
-                    Biography = e.Author.Biography,
-                    Image = e.Author.Image
-                },
-                Category = new CategoryResponse
-                {
-                    Id = e.Category!.Id
-                },
-                Publisher = new PublisherResponse
-                {
-                    Id = e.Publisher!.Id,
-                }
+                Author = e.Author!.Name,                
+                Category = e.Category!.Name,                
+                Publisher = e.Publisher!.Name,                
             })
             .ToListAsync(cancellationToken);
 

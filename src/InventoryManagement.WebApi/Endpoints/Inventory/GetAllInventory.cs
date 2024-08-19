@@ -50,14 +50,9 @@ public class GetAllInventory : BaseEndpoint<GetAllInventoryRequest, List<Invento
                 Publisher = e.Book.Publisher!.Name,
                 Category = e.Book.Category!.Name,                
                 Year = e.Book.Year,
-                Pages = e.Book.Pages,
-                Description = e.Book.Description,
                 PublishedDate = e.Book.PublishedDate,
                 Isbn = e.Book.Isbn,
-                Dimensions = e.Book.Dimensions,
-                Weight = e.Book.Weight,
                 Price = e.Book.Price,
-                Cover = e.Book.Cover,
                 Language = e.Book.Language,
             })
             .ToListAsync(cancellationToken);

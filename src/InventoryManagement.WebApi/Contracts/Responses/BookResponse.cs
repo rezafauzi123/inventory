@@ -18,7 +18,7 @@ public record BookResponse
     public int? Price { get; set; }
     public string? Cover { get; set; }
     public string? Language { get; set; }
-    public AuthorResponse? Author { get; set; }
-    public CategoryResponse? Category { get; set; }
-    public PublisherResponse? Publisher { get; set; }
+    public string? Author { get; set; }
+    public string? Category { get; set; }
+    public string? Publisher { get; set; }
 }
